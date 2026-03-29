@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<!-- Metadados -->
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta property="og:image" content="https://makyneta.github.io/faclass/assets/images/client/IMG_0249.jpg">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://makyneta.github.io">
+<meta name="author" content="Makyneta Unipessoal, Lda">
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<!-- Styles -->
+<link rel="stylesheet" href="assets/styles/main.css">
+<!-- Scripts -->
+<script src="assets/scripts/main.js" defer></script>
+<!-- Title_Favicon -->
+<title>FACLass | Makyneta by Tomás Mota</title>
+<link rel="icon" href="https://makyneta.github.io/favicon.png" type="image/png">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <!--
+    Logo: substitua src="logo.png" pelo caminho da sua imagem PNG.
+    Ao clicar na logo vai para o site principal.
+  -->
+  <a href="https://makyneta.github.io" target="_blank" rel="noopener" class="logo-link">
+    <img
+      class="logo-img"
+      src="assets/images/ui/makyneta.png"
+      alt="Makyneta"
+      onerror="this.outerHTML='<span class=logo-fallback>Makyneta</span>'"
+    />
+  </a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-for">Evento</div>
+  <h1 class="hero-name" id="hero-name">—</h1>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="ctrl-left" id="filter-row">
+    <!-- filtros gerados dinamicamente -->
+  </div>
+  <div class="ctrl-right">
+    <span class="count-label" id="count-label"></span>
+    <div class="vtoggle">
+      <button class="vb on" id="v3" onclick="setView(3)" title="Grelha">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="4" height="4"/><rect x="6" y="1" width="4" height="4"/><rect x="11" y="1" width="4" height="4"/><rect x="1" y="7" width="4" height="4"/><rect x="6" y="7" width="4" height="4"/><rect x="11" y="7" width="4" height="4"/></svg>
+      </button>
+      <button class="vb" id="v2" onclick="setView(2)" title="2 colunas">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6"/><rect x="9" y="1" width="6" height="6"/><rect x="1" y="9" width="6" height="6"/><rect x="9" y="9" width="6" height="6"/></svg>
+      </button>
+      <button class="vb" id="v1" onclick="setView(1)" title="Lista">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="2" width="14" height="3"/><rect x="1" y="7" width="14" height="3"/><rect x="1" y="12" width="14" height="3"/></svg>
+      </button>
+    </div>
+    <button class="btn-sel" onclick="toggleSelAll()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></svg>
+      Selecionar todas
+    </button>
+    <button class="btn-dl" onclick="doDownload()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 15V3m0 12-4-4m4 4 4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>
+      Baixar
+    </button>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="g-wrap">
+  <div class="g-divider"></div>
+  <div class="gallery" id="gallery"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <div class="lb-bg" onclick="closeLb()"></div>
+  <button class="lb-close" onclick="closeLb()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <button class="lb-nav lb-prev" onclick="navLb(-1)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18 9 12l6-6"/></svg>
+  </button>
+  <button class="lb-nav lb-next" onclick="navLb(1)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <div class="lb-shell">
+    <div class="lb-img-box">
+      <img id="lb-img" src="" alt=""/>
+    </div>
+    <div class="lb-foot">
+      <div class="lb-info">
+        <span class="lb-title" id="lb-title"></span>
+        <span class="lb-sub" id="lb-sub"></span>
+      </div>
+      <a id="lb-dl" href="#" class="btn-dl" style="font-size:.62rem;padding:.48rem 1rem" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M12 15V3m0 12-4-4m4 4 4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>
+        Download
+      </a>
+    </div>
+    <div class="lb-dots" id="lb-dots"></div>
+  </div>
+</div>
+
+<!-- FLOAT BAR -->
+<div class="fbar" id="fbar">
+  <span class="fbar-count"><strong id="fbar-n">0</strong> selecionadas</span>
+  <button class="fbar-dl" onclick="doDownload()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 15V3m0 12-4-4m4 4 4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>
+    Fazer download
+  </button>
+  <button class="fbar-clear" onclick="clearSel()">Limpar</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <p class="foot-copy">
+      &copy; <span id="yr"></span>
+      <a href="https://makyneta.github.io" target="_blank" rel="noopener">Makyneta, Unipessoal, Lda.</a>
+      &nbsp;&mdash;&nbsp; Todos os direitos reservados. As imagens são de uso pessoal exclusivo do cliente.
+    </p>
+    <span class="foot-right" id="ft-client"></span>
+  </div>
+</footer>
+</body>
+</html>
